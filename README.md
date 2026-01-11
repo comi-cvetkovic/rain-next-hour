@@ -35,12 +35,10 @@ The project is implemented as a simple end-to-end machine learning pipeline:
    Live hourly weather data is fetched from the Open-Meteo API for a given geographic location. For training, the model uses recent historical data (past days). For inference, the latest available hour is used.
 
 2. **Feature engineering and labeling**  
-   The hourly time series is transformed into a supervised learning dataset.  
-   Weather conditions at time *t* are used as input features, while precipitation at time *t+1* is used to construct the binary target variable (rain or no rain).
+   The hourly time series is transformed into a supervised learning dataset. Weather conditions at time *t* are used as input features, while precipitation at time *t+1* is used to construct the binary target variable (rain or no rain).
 
 3. **Model training**  
-   A baseline Logistic Regression classifier is trained using scikit-learn.  
-   Feature scaling is applied to ensure stable optimization, and class imbalance is handled by weighting the rain and no-rain classes.
+   A baseline Logistic Regression classifier is trained using scikit-learn. Feature scaling is applied to ensure stable optimization, and class imbalance is handled by weighting the rain and no-rain classes.
 
 4. **Model persistence and inference**  
    The trained model and metadata are saved as a `.joblib` file. During inference, the model is loaded without retraining and used to predict the probability of rain in the next hour.
@@ -61,7 +59,23 @@ We provide a **Streamlit-based web UI**:
   - the latest feature values used for prediction
   - a table and line chart showing recent precipitation history
 
-## 5) Technologies used
+## 5) Demo screenshots
+
+### Example: Stockholm
+**Prediction probability**
+![Stockholm Probability](screenshots/StockholmProbRain.PNG)
+
+**Recent precipitation history**
+![Stockholm History](screenshots/StockholmHistory.PNG)
+
+### Example: Belgrade
+**Prediction probability**
+![Belgrade Probability](screenshots/BelgradeProbRain.PNG)
+
+**Recent precipitation history**
+![Belgrade History](screenshots/BelgradeHistory.PNG)
+
+## 6) Technologies used
 - **Programming language:** Python 3.x
 - **Data ingestion:** `requests` + Open-Meteo APIs
 - **Data processing:** pandas, NumPy
